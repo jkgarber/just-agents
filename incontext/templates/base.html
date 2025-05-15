@@ -21,7 +21,10 @@
 					{% else %}
 						{% if request.path == url_for('auth.login') %}
 							<li><a href="{{ url_for('auth.register') }}">Register</a></li>
+						{% elif request.path == url_for('auth.register') %}
+							<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
 						{% else %}
+							<li><a href="{{ url_for('auth.register') }}">Register</a></li>
 							<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
 						{% endif %}
 					{% endif %}
