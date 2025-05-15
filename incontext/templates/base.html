@@ -19,8 +19,11 @@
 						<li><span>{{ g.user['username'] }}</span></li>
 						<li><span><a href="{{ url_for('auth.logout') }}">Log Out</a></li> <!-- url_for is automatically available and is used to generate URLs to views instead of writing them out manually. -->
 					{% else %}
-						<li><a href="{{ url_for('auth.register') }}">Register</a></li>
-						<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+						{% if request.path == url_for('auth.login') %}
+							<li><a href="{{ url_for('auth.register') }}">Register</a></li>
+						{% else %}
+							<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+						{% endif %}
 					{% endif %}
 				</ul>
 			</nav>

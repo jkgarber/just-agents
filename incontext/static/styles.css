@@ -2,13 +2,24 @@
 	box-sizing: border-box;
 }
 
+body {
+	margin: 0;
+}
+
 nav {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
+	background-color: lightgrey;
+	padding: 0 8px;
 }
 
-ul {
+main {
+	padding: 0 8px;
+}
+
+nav ul {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -17,6 +28,10 @@ ul {
 
 nav li {
 	list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 form {
