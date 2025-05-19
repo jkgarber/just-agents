@@ -17,6 +17,7 @@
 			<li><b>Model:</b> {{ agent['model'] }}</li>
 			<li><b>Role:</b> {{ agent['role'] }}</li>
 			<li><b>Instructions:</b> {{ agent['instructions']}}</li>
+		</ul>
 		<footer>
 			<p>Created: {{ agent['created'].strftime('%d.%m.%Y') }} | Creator: {{ agent['username'] }}{% if g.user['id'] == agent['creator_id'] %} | <a href="{{ url_for('agents.update', id=agent['id']) }}">Edit</a>{% endif %}</p>
 		</footer>
