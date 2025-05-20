@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 def create_app(test_config=None):
     '''This is the application factory function: configuration, registration, and other setup.'''
@@ -13,6 +14,7 @@ def create_app(test_config=None):
     app.config.from_mapping( # sets some default configuration.
         SECRET_KEY='dev', # used by Flask and extensions to keep data safe. should be overridden with a random valye when deploying.
         DATABASE=os.path.join(app.instance_path, 'incontext.sqlite'), # the path where the sqlite database will be saved. `app.instance_path` is the path that Flask has chosen for the instance folder.
+        APPLICATION_ROOT='/incontext',
     )
     
     if test_config is None:
@@ -41,5 +43,8 @@ def create_app(test_config=None):
     from . import agents
     app.register_blueprint(agents.bp)
 
-})
+    mounted_app = DispatcherMiddleware(None, {
+        '/incontext': app
+    })
 
+    return mounted_app
