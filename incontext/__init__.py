@@ -2,7 +2,6 @@ import os
 
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 def create_app(test_config=None):
     '''This is the application factory function: configuration, registration, and other setup.'''
@@ -43,8 +42,4 @@ def create_app(test_config=None):
     from . import agents
     app.register_blueprint(agents.bp)
 
-    mounted_app = DispatcherMiddleware(None, {
-        '/incontext': app
-    })
-
-    return mounted_app
+    return app
